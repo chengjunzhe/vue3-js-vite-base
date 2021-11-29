@@ -23,7 +23,8 @@ export default defineConfig(async ({ command, mode }) => {
       vueJsx(),
       //html模板控制
       html({
-        minify: true,
+        minify: true, // 开启最小化
+        // 注入数据
         inject: {
           data: {
             title: envConfig.title
@@ -50,8 +51,8 @@ export default defineConfig(async ({ command, mode }) => {
       proxy: {
         '/apis': {
           target: 'http://101.200.76.112/', //代理接口
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/apis/, '')
+          changeOrigin: true, //开启跨域
+          rewrite: (path) => path.replace(/^\/apis/, '') //替换路径
         }
       }
     },
@@ -64,6 +65,7 @@ export default defineConfig(async ({ command, mode }) => {
       minify: 'terser', // 混淆器，terser构建后文件体积更小
       // terser配置
       terserOptions: {
+        // 压缩
         compress: {
           keep_infinity: true, //保持infinity
           drop_console: true //取消console
@@ -88,6 +90,7 @@ export default defineConfig(async ({ command, mode }) => {
       }
     },
     resolve: {
+      // 配置别名
       alias: {
         '@': resolvePath('./src/')
       }
