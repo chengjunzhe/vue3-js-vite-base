@@ -1,17 +1,21 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+import user from './modules/user'
+import home from './modules/home'
+
+const routesObj = {
+  user,
+  home
+}
+
 export const constantRoutes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
-    path: '/home',
-    component: () => import('@/view/home.vue')
-  },
-  {
-    path: '/user',
-    component: () => import('@/view/user.vue')
+    path: '/login',
+    component: () => import('@/view/login.vue')
   }
 ]
 
@@ -31,5 +35,16 @@ const router = createRouter({
   // 路由项
   routes: [...constantRoutes] // 静态路由和动态路由的临时合并
 })
+
+// 动态添加路由
+export const addAsyncRoutes = (routeArr) => {
+  const asyncRoutes = []
+  routeArr.forEach((el) => {
+    asyncRoutes.push(...routesObj[el])
+  })
+  asyncRoutes.forEach((el) => {
+    router.addRoute(el)
+  })
+}
 
 export default router

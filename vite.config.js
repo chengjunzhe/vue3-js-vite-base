@@ -43,6 +43,14 @@ export default defineConfig(async ({ command, mode }) => {
       //兼容传统浏览器
       // legacy({ targets: ['defaults', 'not IE 11'] })
     ],
+    // 全局样式
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: `@import "./src/style/flex.less";`
+        }
+      }
+    },
     // 服务
     server: {
       open: true,
@@ -80,13 +88,15 @@ export default defineConfig(async ({ command, mode }) => {
           externalGlobals({
             vue: 'Vue'
           })
-        ]
-        // // 输出文件
-        // output: {
-        //   chunkFileNames: 'static/js/[name]-[hash].js',
-        //   entryFileNames: 'static/js/[name]-[hash].js'
-        //   // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
-        // }
+        ],
+        assetsDir: 'static/img/',
+        rollupOptions: {
+          output: {
+            chunkFileNames: 'static/js/[name]-[hash].js',
+            entryFileNames: 'static/js/[name]-[hash].js',
+            assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+          }
+        }
       }
     },
     resolve: {

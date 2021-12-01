@@ -7,6 +7,6 @@ import store from '@/store'
 import '@/style/index.less'
 
 const app = createApp(App)
-  .use(router)
-  .use(store)
-  .mount('#app')
+app.use(router)
+app.use(store)
+app.mount('#app')
