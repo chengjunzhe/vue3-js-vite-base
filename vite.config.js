@@ -19,8 +19,7 @@ export default defineConfig(async ({ command, mode }) => {
     base: './',
     plugins: [
       vue(),
-      //vue-jsx
-      vueJsx(),
+      vueJsx(), //vue-jsx
       //html模板控制
       html({
         minify: true, // 开启最小化
@@ -89,6 +88,7 @@ export default defineConfig(async ({ command, mode }) => {
             vue: 'Vue'
           })
         ],
+        //静态资源文件夹
         assetsDir: 'static/img/',
         rollupOptions: {
           output: {
